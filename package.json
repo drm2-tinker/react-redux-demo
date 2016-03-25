@@ -4,6 +4,9 @@
   "description": "A demo app in React/Redux.",
   "main": "index.js",
   "scripts": {
+    "start": "npm run watch",
+    "build": "webpack",
+    "watch": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
