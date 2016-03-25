@@ -1,10 +1,11 @@
-const path = require('path');
+const path    = require('path');
+const webpack = require('webpack');
 
 const PATHS = {
     src:  path.join(__dirname, 'src/js/app.js'),
     dest: {
         path: path.join(__dirname, 'build'),
-        file: path.join(__dirname, 'app.bundle.js')
+        file: 'app.bundle.js'
     }
 };
 
@@ -15,7 +16,17 @@ var config = {
     output: {
         path:     PATHS.dest.path,
         filename: PATHS.dest.file
-    }
+    },
+    devServer: {
+        contentBase: PATHS.dest.path,
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };
 
 module.exports = config;
