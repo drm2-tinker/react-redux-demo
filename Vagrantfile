@@ -12,7 +12,7 @@
 # fork it and change the following to reflect your own copy
 gh_user   = "drmyersii"
 gh_repo   = "vagrant-env-basher"
-gh_branch = "v0.5.1" # if you want to ensure consistency, use a specific tag (e.g. v0.1.0)
+gh_branch = "v0.6.1" # if you want to ensure consistency, use a specific tag (e.g. v0.1.0)
 gh_url    = "https://raw.githubusercontent.com/#{gh_user}/#{gh_repo}/#{gh_branch}"
 
 # path to provisioning scripts
@@ -38,8 +38,8 @@ Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
     # set up network configuration
-    config.vm.network :forwarded_port, guest: 80,  host: 10080
-    config.vm.network :forwarded_port, guest: 443, host: 10443
+    config.vm.network :forwarded_port, guest: 1337, host: 12345
+    # config.vm.network :forwarded_port, guest: 443,  host: 10443
 
     ####
     ##
@@ -111,8 +111,22 @@ Vagrant.configure(2) do |config|
         # @param: (optional) group to run php-fpm as, note: if left blank, group will be left as default
         args_php_group = "vagrant"
 
+        # @param: (optional) owner to run php-fpm as, note: if left blank, owner will be left as default
+        args_php_owner = "vagrant"
+
         # call php provisioner
-        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/php", args: [ args_php_version, args_php_package_list, args_php_user, args_php_group ]
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/php", args: [ args_php_version, args_php_package_list, args_php_user, args_php_group, args_php_owner ]
+
+
+        ####
+        ## composer
+        ####
+
+        # @param: (optional) location to run `composer install`
+        args_composer_install_dir = ""
+
+        # call composer provisioner
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/composer", args: [ args_composer_install_dir ]
 
 
         ####
@@ -146,10 +160,21 @@ Vagrant.configure(2) do |config|
         args_node_version = "node"
 
         # @param: global node packages to install
-        args_node_packages = "npm pm2 gulp"
+        args_node_packages = "npm gulp"
 
         # call node provisioner
         config.vm.provision :shell, privileged: false, path: "#{scripts_url}/node", args: [ args_node_version, args_node_packages ]
+
+
+        ####
+        ## npm
+        ####
+
+        # @param: (optional) location to run `npm install`
+        args_npm_install_dir = "/vagrant"
+
+        # call npm provisioner
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/npm", args: [ args_npm_install_dir ]
 
 
         ####
@@ -161,15 +186,4 @@ Vagrant.configure(2) do |config|
 
         # call ruby provisioner
         # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/ruby", args: [ args_ruby_version, args_ruby_user, args_ruby_group ]
-
-
-        ####
-        ## composer
-        ####
-
-        # @param: (optional) location to run `composer install`
-        args_composer_install_dir = ""
-
-        # call composer provisioner
-        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/composer", args: [ args_composer_install_dir ]
 end
