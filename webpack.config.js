@@ -17,6 +17,13 @@ var config = {
         path:     PATHS.dest.path,
         filename: PATHS.dest.file
     },
+    module: {
+        loaders: [{
+            loader: 'babel',
+            test: /\.jsx?$/,
+            exclude: /node_modules/
+        }]
+    },
     devServer: {
         contentBase: PATHS.dest.path,
         historyApiFallback: true,
