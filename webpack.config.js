@@ -22,7 +22,9 @@ var config = {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        progress: true
+        progress: true,
+        host: "0.0.0.0",
+        port: 12345
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
