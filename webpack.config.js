@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const PATHS = {
     src:  {
         path: path.join(__dirname, 'src/js'),
-        file: 'app.js',
+        file: 'app.jsx',
     },
     dest: {
         path: path.join(__dirname, 'build'),
