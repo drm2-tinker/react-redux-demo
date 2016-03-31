@@ -2,26 +2,36 @@ const path    = require('path');
 const webpack = require('webpack');
 
 const PATHS = {
-    src:  path.join(__dirname, 'src/js/app.js'),
+    src:  {
+        path: path.join(__dirname, 'src/js'),
+        file: 'app.js',
+    },
     dest: {
         path: path.join(__dirname, 'build'),
-        file: 'app.bundle.js'
+        file: 'app.bundle.js',
     }
 };
 
 var config = {
-    entry: {
-        src: PATHS.src
-    },
+    entry: path.join(PATHS.src.path, PATHS.src.file),
     output: {
         path:     PATHS.dest.path,
-        filename: PATHS.dest.file
+        filename: PATHS.dest.file,
     },
     module: {
         loaders: [{
             loader: 'babel',
             test: /\.jsx?$/,
-            exclude: /node_modules/
+            include: [
+                PATHS.src.path,
+            ],
+            query: {
+                presets: [
+                    'react',
+                    'es2015',
+                    'stage-1',
+                ]
+            },
         }]
     },
     devServer: {
@@ -31,10 +41,10 @@ var config = {
         inline: true,
         progress: true,
         host: "0.0.0.0",
-        port: 12345
+        port: 12345,
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
 
