@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d3c6281d332d872b1aaa"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b75ebaa0cc4f6dfb61f8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -606,10 +606,10 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { 'class': 'greeting' },
+	                { className: 'greeting' },
 	                _react2.default.createElement(
 	                    'p',
-	                    { 'class': 'greeting-text' },
+	                    { className: 'greeting-text' },
 	                    'Hello, World!'
 	                )
 	            );
