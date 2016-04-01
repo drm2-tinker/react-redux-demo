@@ -4,7 +4,7 @@ const GifItem = (props) =>
 {
     return (
         <li>
-            <img src={props.gif.url} />
+            <img src={props.gif.images.downsized.url} />
         </li>
     );
 }
