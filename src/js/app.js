@@ -10,20 +10,7 @@ class App extends React.Component
         super(props);
 
         this.state = {
-            gifs: [
-                {
-                    id: 1,
-                    url: 'http://fakeimg.pl/300/?text=Image+1',
-                },
-                {
-                    id: 2,
-                    url: 'http://fakeimg.pl/300/?text=Image+2',
-                },
-                {
-                    id: 3,
-                    url: 'http://fakeimg.pl/300/?text=Image+3',
-                },
-            ]
+            gifs: []
         };
     }
 
