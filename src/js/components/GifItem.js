@@ -1,10 +1,10 @@
 import React from 'react';
 
-const GifItem = (gif) =>
+const GifItem = (props) =>
 {
     return (
         <li>
-            <img src={gif.url} />
+            <img src={props.gif.url} />
         </li>
     );
 }
