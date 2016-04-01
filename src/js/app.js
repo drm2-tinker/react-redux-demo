@@ -14,6 +14,9 @@ class App extends React.Component
         this.state = {
             gifs: []
         };
+
+        // fix lexical binding of `this`
+        this.handleTermChange = this.handleTermChange.bind(this);
     }
 
     handleTermChange (term)
@@ -23,7 +26,9 @@ class App extends React.Component
 
         request.get(url, (err, res) =>
         {
-            console.log(res.body.data[0]);
+            this.setState({
+                gifs: res.body.data
+            });
         });
     }
 
